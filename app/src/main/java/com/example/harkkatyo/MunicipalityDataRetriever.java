@@ -2,13 +2,10 @@ package com.example.harkkatyo;
 
 
 import android.content.Context;
-
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
@@ -35,7 +32,6 @@ import java.util.HashMap;
                 e.printStackTrace();
             }
 
-            //System.out.println(areas.toPrettyString());
 
             ArrayList<String> keys = new ArrayList<>();
             ArrayList<String> values = new ArrayList<>();
