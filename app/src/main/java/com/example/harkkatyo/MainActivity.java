@@ -1,8 +1,10 @@
 package com.example.harkkatyo;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -38,8 +40,19 @@ public class MainActivity extends AppCompatActivity {
         txtPopulation = findViewById(R.id.txtPopulation);
         txtWeather = findViewById(R.id.txtWeather);
         editTextTown = findViewById(R.id.editTextTown);
+        Button btnTab = findViewById(R.id.btnTab);
+
+
+
 
     }
+
+
+    public void onTabClick(View view)   {
+        Intent intent = new Intent(this, TabActivity.class);
+        startActivity(intent);
+    }
+
 
     public void onBtnTownClick(View view)   {
         Context context = this;
@@ -80,6 +93,9 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+
+
 
     }
 }
