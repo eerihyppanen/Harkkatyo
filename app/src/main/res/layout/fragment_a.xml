@@ -6,16 +6,11 @@
     tools:context=".FragmentA">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
 
     <TextView
         android:id="@+id/txtTownTest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal|center_vertical"
-        android:text="Town" />
+        android:layout_gravity="center_horizontal|center_vertical" />
 
 </FrameLayout>

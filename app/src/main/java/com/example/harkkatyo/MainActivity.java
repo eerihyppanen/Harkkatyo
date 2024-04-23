@@ -17,6 +17,10 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 public class MainActivity extends AppCompatActivity {
 
     private TextView txtWeather;
@@ -42,11 +46,11 @@ public class MainActivity extends AppCompatActivity {
         txtWeather = findViewById(R.id.txtWeather);
         editTextTown = findViewById(R.id.editTextTown);
         Button btnTab = findViewById(R.id.btnTab);
-        recyclerView = findViewById(R.id.rvTownList);
+        //recyclerView = findViewById(R.id.rvTownList);
 
     }
     //we used android studios instruction website and asked help from chat gpt on this area how to save search history.
-    public void onBtnTownClick(View view) {
+    /*public void onBtnTownClick(View view) {
         String location = editTextTown.getText().toString();
         SharedPreferences sharedPreferences = getSharedPreferences("SearchHistory", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -69,6 +73,50 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new TownListAdapter(recentSearches));
+    }*/
+    public void onBtnTownClick(View view)   {
+        Context context = this;
+        MunicipalityDataRetriever mr = new MunicipalityDataRetriever();
+        WeatherDataRetriever wr = new WeatherDataRetriever();
+        String location = editTextTown.getText().toString();
+
+        ExecutorService service = Executors.newSingleThreadExecutor();
+
+
+        service.execute(new Runnable() {
+            @Override
+            public void run() {
+                ArrayList<MunicipalityData> populationData = mr.getData(context, location);
+                WeatherData weatherData = wr.getWeatherData(location);
+                if (populationData == null) {
+                    return;
+                }
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        String s = "";
+                        for (MunicipalityData data : populationData)    {
+                            s = s + data.getYear() + ": " + data.getPopulation() + "\n";
+                        }
+
+                        txtPopulation.setText(s);
+
+                        txtWeather.setText(
+                                weatherData.getName() + "\n" +
+                                        "sää nyt :" +weatherData.getMain() + " (" + weatherData.getDescription()
+                                        + ") \n" + "lämpötila: " + weatherData.getTemperature() + "K\n" +
+                                        "Tuulennopeus: " + weatherData.getWindSpeed() + "m/s\n"
+                        );
+
+                    }
+                });
+
+            }
+        });
+
+
+
+
     }
 
     public void onTabClick (View view){

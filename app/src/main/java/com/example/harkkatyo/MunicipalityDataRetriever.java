@@ -1,6 +1,8 @@
 package com.example.harkkatyo;
 
 
+import android.content.Context;
+
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
@@ -16,7 +18,7 @@ import java.util.HashMap;
 
     public class MunicipalityDataRetriever {
 
-        public ArrayList<MunicipalityData> getData(FragmentA context, String municipality) {
+        public ArrayList<MunicipalityData> getData(Context context, String municipality) {
             ObjectMapper objectMapper = new ObjectMapper();
 
             JsonNode areas = null;
