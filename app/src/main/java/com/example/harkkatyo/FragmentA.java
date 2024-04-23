@@ -12,8 +12,6 @@ import android.widget.TextView;
 
 public class FragmentA extends Fragment {
 
-    private TextView txtWeatherTest;
-    private TextView txtPopulationTest;
 
     public FragmentA() {
         // Required empty public constructor

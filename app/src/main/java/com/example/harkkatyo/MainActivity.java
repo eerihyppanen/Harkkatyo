@@ -46,11 +46,11 @@ public class MainActivity extends AppCompatActivity {
         txtWeather = findViewById(R.id.txtWeather);
         editTextTown = findViewById(R.id.editTextTown);
         Button btnTab = findViewById(R.id.btnTab);
-        //recyclerView = findViewById(R.id.rvTownList);
+        recyclerView = findViewById(R.id.rvTownList);
 
     }
     //we used android studios instruction website and asked help from chat gpt on this area how to save search history.
-    /*public void onBtnTownClick(View view) {
+    public void btnSearchHistory(View view) {
         String location = editTextTown.getText().toString();
         SharedPreferences sharedPreferences = getSharedPreferences("SearchHistory", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new TownListAdapter(recentSearches));
-    }*/
+    }
     public void onBtnTownClick(View view)   {
         Context context = this;
         MunicipalityDataRetriever mr = new MunicipalityDataRetriever();
