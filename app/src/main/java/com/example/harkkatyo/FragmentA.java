@@ -1,5 +1,6 @@
 package com.example.harkkatyo;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,6 +8,33 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
+import java.text.BreakIterator;
+import java.util.ArrayList;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,6 +51,8 @@ public class FragmentA extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private TextView txtWeather;
+    private TextView txtPopulation;
 
     public FragmentA() {
         // Required empty public constructor
@@ -53,6 +83,7 @@ public class FragmentA extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
     @Override
@@ -61,4 +92,53 @@ public class FragmentA extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_a, container, false);
     }
+
+    public void onTabClick (View view){
+        FragmentA context = this;
+        MunicipalityDataRetriever mr = new MunicipalityDataRetriever();
+        WeatherDataRetriever wr = new WeatherDataRetriever();
+        EditText editTextTown = null;
+        String location = editTextTown.getText().toString();
+
+        ExecutorService service = Executors.newSingleThreadExecutor();
+
+
+        service.execute(new Runnable() {
+            @Override
+            public void run() {
+                ArrayList<MunicipalityData> populationData = mr.getData(context, location);
+                WeatherData weatherData = wr.getWeatherData(location);
+                if (populationData == null) {
+                    return;
+                }
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        String s = "";
+                        for (MunicipalityData data : populationData) {
+                            s = s + data.getYear() + ": " + data.getPopulation() + "\n";
+                        }
+
+                        txtPopulation.setText(s);
+
+                        txtWeather.setText(
+                                weatherData.getName() + "\n" +
+                                        "sää nyt :" + weatherData.getMain() + " (" + weatherData.getDescription()
+                                        + ") \n" + "lämpötila: " + weatherData.getTemperature() + "K\n" +
+                                        "Tuulennopeus: " + weatherData.getWindSpeed() + "m/s\n"
+                        );
+
+                    }
+                });
+
+            }
+
+            private void runOnUiThread(Runnable runnable) {
+            }
+        });
+
+
+    }
+
+
 }

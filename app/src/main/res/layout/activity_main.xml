@@ -5,19 +5,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:onClick="onTabClick"
     tools:context=".MainActivity">
-
-    <TextView
-        android:id="@+id/txtWeather"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="säätiedot"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.448"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.244" />
 
     <EditText
         android:id="@+id/editTextTown"
@@ -33,28 +22,17 @@
         app:layout_constraintVertical_bias="0.065" />
 
     <Button
-        android:id="@+id/btnSearch"
+        android:id="@+id/btnSearchHistory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="onBtnTownClick"
-        android:text="HAE"
+        android:text="haku historia"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.472"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/editTextTown"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.079" />
-
-    <TextView
-        android:id="@+id/txtPopulation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="104dp"
-        android:text="population"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.447"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtWeather" />
+        app:layout_constraintVertical_bias="0.118" />
 
     <Button
         android:id="@+id/btnTab"
@@ -62,12 +40,27 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
         android:onClick="onTabClick"
-        android:text="openTabForCoding"
+        android:text="HAE"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.933"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnSearch"
-        app:layout_constraintVertical_bias="0.493" />
+        app:layout_constraintTop_toBottomOf="@+id/btnSearchHistory"
+        app:layout_constraintVertical_bias="0.699" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvTownList"
+        android:layout_width="409dp"
+        android:layout_height="250dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="92dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="77dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnTab"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTown"
+        app:layout_constraintVertical_bias="0.202" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
