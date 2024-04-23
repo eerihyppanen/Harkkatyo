@@ -7,8 +7,11 @@
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:id="@+id/txtSofware"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:text="Sovellus näyttää haettavan kaupungin sään ja asukasluvun. Lisäksi sovelluksessa
+on infoa toimminnoista ja kehittäjistä"
+        android:layout_gravity="center"/>
 
 </FrameLayout>

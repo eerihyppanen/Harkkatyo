@@ -7,8 +7,17 @@
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:id="@+id/txtInfo"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_gravity="top|left"
+        android:text="Manja Stranden \n Tuotantotalous \n https://github.com/ \n manjastranden" />
+
+    <TextView
+        android:id="@+id/txtInfo2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Eeri Hyppänen \n Tietotekniikka \n https://github.com/ \n eerihyppanen"
+        android:layout_gravity="top|right"/>
 
 </FrameLayout>
